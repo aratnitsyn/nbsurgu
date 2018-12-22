@@ -1,0 +1,11 @@
+<?xml version = "1.0"?>
+<events>
+    <class name = "start">
+        <add type = "command">/start</add>
+    </class>
+
+    <class name = "help">
+        <add type = "callback">help_callback__first</add>
+        <add type = "callback">help_callback__second</add>
+    </class>
+</events>
