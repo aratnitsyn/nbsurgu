@@ -52,11 +52,12 @@ public class XMLParser {
                 Element elementAdd = (Element) nodeListClass.item(_add);
 
                 String type = elementAdd.getAttribute("type");
+                String textContext = elementAdd.getTextContent();
 
                 if (type.equals("command")) {
-                    commands.add(type);
+                    commands.add(textContext);
                 } else if (type.equals("callback")) {
-                    callbacks.add(type);
+                    callbacks.add(textContext);
                 }
             }
 
