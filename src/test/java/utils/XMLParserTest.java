@@ -4,7 +4,6 @@ import com.ras.nbsurgu.telegram.utils.Emoji;
 import com.ras.nbsurgu.telegram.utils.XMLParser;
 import com.ras.nbsurgu.telegram.events.CommandEvents;
 
-import org.apache.commons.text.StringEscapeUtils;
 import org.junit.Test;
 import org.junit.Before;
 
