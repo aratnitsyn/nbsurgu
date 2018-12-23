@@ -1,11 +1,15 @@
 <?xml version = "1.0"?>
 <events>
-    <class name = "start">
+    <class name = "com.ras.nbsurgu.telegram.commands.Start">
         <add type = "command">/start</add>
     </class>
 
-    <class name = "help">
-        <add type = "callback">help_callback__first</add>
-        <add type = "callback">help_callback__second</add>
+    <class name = "com.ras.nbsurgu.telegram.commands.Help">
+        <add type = "command">/help</add>
+    </class>
+
+    <class name = "com.ras.nbsurgu.telegram.commands.News">
+        <add type = "command" emoji = "\u2668\uFE0F">Новости</add>
+        <add type = "command">/news</add>
     </class>
 </events>

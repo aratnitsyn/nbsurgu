@@ -3,6 +3,8 @@ package com.ras.nbsurgu.telegram.utils;
 import com.ras.nbsurgu.telegram.events.CommandEvents;
 import com.ras.nbsurgu.telegram.events.CallbackEvents;
 
+import org.apache.commons.text.StringEscapeUtils;
+
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Document;
@@ -53,6 +55,10 @@ public class XMLParser {
 
                 String type = elementAdd.getAttribute("type");
                 String textContext = elementAdd.getTextContent();
+
+                if (elementAdd.hasAttribute("emoji")) {
+                    textContext = StringEscapeUtils.unescapeJava(elementAdd.getAttribute("emoji")) + " " + textContext;
+                }
 
                 if (type.equals("command")) {
                     commands.add(textContext);

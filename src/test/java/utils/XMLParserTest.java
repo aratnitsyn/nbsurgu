@@ -1,65 +1,44 @@
 package utils;
 
+import com.ras.nbsurgu.telegram.utils.Emoji;
+import com.ras.nbsurgu.telegram.utils.XMLParser;
 import com.ras.nbsurgu.telegram.events.CommandEvents;
-import com.ras.nbsurgu.telegram.events.CallbackEvents;
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.junit.Test;
 import org.junit.Before;
 
-import java.util.List;
-import java.util.ArrayList;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
 
 public class XMLParserTest {
 
-    private final String FIRST_CLASS = "class_first";
-    private final String SECOND_CLASS = "class_second";
-    private final String THIRD_CLASS = "class_third";
-
-    private final CommandEvents commandEvents = CommandEvents.getInstance();
-    private final CallbackEvents callbackEvents = CallbackEvents.getInstance();
+    private final String START_CLASS = "com.ras.nbsurgu.telegram.commands.Start";
+    private final String HELP_CLASS = "com.ras.nbsurgu.telegram.commands.Help";
+    private final String NEWS_CLASS = "com.ras.nbsurgu.telegram.commands.News";
 
     @Before
     public void before() {
-        List<String> listCommands__First = new ArrayList<>();
-        listCommands__First.add("Войти");
-
-        List<String> listCommands__Second = new ArrayList<>();
-        listCommands__Second.add("Авторизация");
-        listCommands__Second.add("/start");
-
-        List<String> listCommands__Third = new ArrayList<>();
-        listCommands__Third.add("/help");
-
-        List<String> listCallbacks__First = new ArrayList<>();
-        listCallbacks__First.add("callback_join");
-        listCallbacks__First.add("callback_button_1");
-
-        List<String> listCallbacks__Second = new ArrayList<>();
-        listCallbacks__Second.add("callback_settings");
-        listCallbacks__Second.add("callback_pay_state");
-
-        commandEvents.add(FIRST_CLASS, listCommands__First);
-        commandEvents.add(SECOND_CLASS, listCommands__Second);
-        commandEvents.add(THIRD_CLASS, listCommands__Third);
-
-        callbackEvents.add(FIRST_CLASS, listCallbacks__First);
-        callbackEvents.add(SECOND_CLASS, listCallbacks__Second);
+        try {
+            new XMLParser().init();
+        } catch (ParserConfigurationException | IOException | SAXException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     public void testContain() {
-        assert commandEvents.getClassName("Войти").equals(FIRST_CLASS);
-        assert commandEvents.getClassName("Авторизация").equals(SECOND_CLASS);
-        assert commandEvents.getClassName("/start").equals(SECOND_CLASS);
-        assert commandEvents.getClassName("/help").equals(THIRD_CLASS);
+        final CommandEvents commandEvents = CommandEvents.getInstance();
 
-        assert callbackEvents.getClassName("callback_join").equals(FIRST_CLASS);
-        assert callbackEvents.getClassName("callback_button_1").equals(FIRST_CLASS);
-        assert callbackEvents.getClassName("callback_settings").equals(SECOND_CLASS);
-        assert callbackEvents.getClassName("callback_pay_state").equals(SECOND_CLASS);
+        assert commandEvents.getClassName("/start").equals(START_CLASS);
 
-        assert commandEvents.getClassName("Команда 1") == null;
-        assert callbackEvents.getClassName("Обратный вызов 1") == null;
+        assert commandEvents.getClassName("/help").equals(HELP_CLASS);
+
+        assert commandEvents.getClassName("/news").equals(NEWS_CLASS);
+        assert commandEvents.getClassName(Emoji.NEWS + " Новости").equals(NEWS_CLASS);
     }
 
 }
