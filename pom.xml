@@ -67,12 +67,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-text</artifactId>
-            <version>1.6</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.25</version>
@@ -118,7 +112,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.ras.nbsurgu.Main</mainClass>
+                            <mainClass>ru.ras.nbsurgu.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -143,7 +137,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.ras.nbsurgu.Main</mainClass>
+                            <mainClass>ru.ras.nbsurgu.Main</mainClass>
                             <packageName>com.ras.nbsurgu</packageName>
                             <classpathPrefix>libs/</classpathPrefix>
                         </manifest>
@@ -153,11 +147,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>2.10</version>
                 <executions>
                     <execution>
-                        <id>copy</id>
+                        <id>copy-dependencies</id>
                         <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeScope>compile</includeScope>
+                            <outputDirectory>${project.build.directory}/libs</outputDirectory>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
