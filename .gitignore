@@ -120,7 +120,7 @@ buildNumber.properties
 
 ### Bot ###
 # Private settings #
-src/main/java/com/ras/nbsurgu/telegram/settings/Config.java
+src/main/java/ru/ras/nbsurgu/telegram/settings/Config.java
 
 
 # End of https://www.gitignore.io/api/java,maven,intellij+all
