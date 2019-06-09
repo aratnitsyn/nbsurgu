@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Configuration pool via c3p0 -->
+        <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+        <property name="hibernate.c3p0.acquire_increment">3</property> <!-- Determines how many connections at a time c3p0 will try to acquire when the pool is exhausted. -->
+        <property name="hibernate.c3p0.idle_test_period">320</property> <!-- If this is a number greater than 0, c3p0 will test all idle, pooled but unchecked-out connections, every this number of seconds. -->
+        <property name="hibernate.c3p0.timeout">300</property> <!-- Seconds a Connection can remain pooled but unused before being discarded. Zero means idle connections never expire. -->
+        <property name="hibernate.c3p0.max_size">128</property> <!-- Maximum number of Connections a pool will maintain at any given time. -->
+        <property name="hibernate.c3p0.min_size">5</property> <!-- Minimum number of Connections a pool will maintain at any given time. -->
+        <property name="hibernate.c3p0.numHelperThreads">5</property> <!-- Slow JDBC operations are generally performed by helper threads that don't hold contended locks. Spreading these operations over multiple threads can significantly improve performance by allowing multiple operations to be performed simultaneously. -->
+
+        <!-- SQL dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL55Dialect</property>
+
+        <!-- Disable the second-level cache  -->
+        <property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="hibernate.current_session_context_class">thread</property>
+
+        <!-- JDBC connection pool (use the built-in) -->
+        <property name="hibernate.connection.pool_size">1</property>
+
+        <!-- Database connection settings -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/nbsurgu?useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>
+        <property name="hibernate.connection.username">nbsurgu</property>
+        <property name="hibernate.connection.password">nbsurgu</property>
+        <property name="hibernate.connection.CharSet">utf8</property>
+        <property name="hibernate.connection.characterEncoding">utf8</property>
+        <property name="hibernate.connection.useUnicode">true</property>
+
+        <!-- Mapping entities class -->
+        <mapping class="ru.ras.nbsurgu.telegram.database.entity.BookEntity" />
+        <mapping class="ru.ras.nbsurgu.telegram.database.entity.UserEntity" />
+        <mapping class="ru.ras.nbsurgu.telegram.database.entity.CodeEntity" />
+        <mapping class="ru.ras.nbsurgu.telegram.database.entity.StateEntity" />
+        <mapping class="ru.ras.nbsurgu.telegram.database.entity.WorkTimeEntity" />
+        <mapping class="ru.ras.nbsurgu.telegram.database.entity.EmployeeEntity" />
+        <mapping class="ru.ras.nbsurgu.telegram.database.entity.CopyBookEntity" />
+        <mapping class="ru.ras.nbsurgu.telegram.database.entity.OrderBookEntity" />
+        <mapping class="ru.ras.nbsurgu.telegram.database.entity.TakenBookEntity" />
+        <mapping class="ru.ras.nbsurgu.telegram.database.entity.DepartmentEntity" />
+        <mapping class="ru.ras.nbsurgu.telegram.database.entity.AuthorizationEntity" />
+    </session-factory>
+</hibernate-configuration>
