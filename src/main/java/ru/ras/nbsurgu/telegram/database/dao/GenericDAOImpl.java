@@ -22,11 +22,6 @@ public class GenericDAOImpl <T, Id extends Serializable> implements GenericDAO<T
     }
 
     @Override
-    public void persist(T entity) {
-        getCurrentSession().persist(entity);
-    }
-
-    @Override
     public void create(T entity) {
         getCurrentSession().save(entity);
     }
@@ -55,12 +50,6 @@ public class GenericDAOImpl <T, Id extends Serializable> implements GenericDAO<T
     @SuppressWarnings("unchecked")
     public List<T> readAll() {
         return getCurrentSession().createQuery("from " + type.getSimpleName()).list();
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public T readOnRequest(String request) {
-        return (T) getCurrentSession().createQuery(request).uniqueResult();
     }
 
     public Session openCurrentSession() {

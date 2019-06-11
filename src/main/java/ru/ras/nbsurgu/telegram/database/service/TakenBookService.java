@@ -29,18 +29,6 @@ public class TakenBookService {
         return instance;
     }
 
-    public void create(final TakenBookEntity entity) {
-        takenBookDao.openCurrentSessionWithTransaction();
-        takenBookDao.create(entity);
-        takenBookDao.closeCurrentSessionWithTransaction();
-    }
-
-    public void update(final TakenBookEntity entity) {
-        takenBookDao.openCurrentSessionWithTransaction();
-        takenBookDao.update(entity);
-        takenBookDao.closeCurrentSessionWithTransaction();
-    }
-
     public @NotNull List<TakenBookEntity> read(final long userId) {
         final Session session = takenBookDao.openCurrentSessionWithTransaction();
         final CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();

@@ -26,18 +26,6 @@ public class OrderBookService {
         return instance;
     }
 
-    public void create(final OrderBookEntity entity) {
-        orderBookDao.openCurrentSessionWithTransaction();
-        orderBookDao.create(entity);
-        orderBookDao.closeCurrentSessionWithTransaction();
-    }
-
-    public void update(final OrderBookEntity entity) {
-        orderBookDao.openCurrentSessionWithTransaction();
-        orderBookDao.update(entity);
-        orderBookDao.closeCurrentSessionWithTransaction();
-    }
-
     public List<OrderBookEntity> read(final long userId) {
         final Session session = orderBookDao.openCurrentSessionWithTransaction();
         final CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
@@ -53,14 +41,6 @@ public class OrderBookService {
         orderBookDao.closeCurrentSessionWithTransaction();
 
         return orderBookEntities;
-    }
-
-    public List<OrderBookEntity> readAll() {
-        orderBookDao.openCurrentSessionWithTransaction();
-        final List<OrderBookEntity> departmentEntities = orderBookDao.readAll();
-        orderBookDao.closeCurrentSessionWithTransaction();
-
-        return departmentEntities;
     }
 
 }

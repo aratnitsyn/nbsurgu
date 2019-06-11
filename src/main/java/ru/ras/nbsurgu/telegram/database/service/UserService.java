@@ -8,7 +8,6 @@ import ru.ras.nbsurgu.telegram.database.entity.UserEntity;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.List;
 import java.util.Optional;
 
 public class UserService {
@@ -27,18 +26,6 @@ public class UserService {
         }
 
         return instance;
-    }
-
-    public void persist(final UserEntity entity) {
-        userDao.openCurrentSessionWithTransaction();
-        userDao.persist(entity);
-        userDao.closeCurrentSessionWithTransaction();
-    }
-
-    public void create(final UserEntity entity) {
-        userDao.openCurrentSessionWithTransaction();
-        userDao.create(entity);
-        userDao.closeCurrentSessionWithTransaction();
     }
 
     public void update(final UserEntity entity) {
@@ -81,14 +68,6 @@ public class UserService {
         userDao.closeCurrentSessionWithTransaction();
 
         return userEntityOptional;
-    }
-
-    public List<UserEntity> readAll() {
-        userDao.openCurrentSessionWithTransaction();
-        List<UserEntity> userEntities = userDao.readAll();
-        userDao.closeCurrentSessionWithTransaction();
-
-        return userEntities;
     }
 
 }

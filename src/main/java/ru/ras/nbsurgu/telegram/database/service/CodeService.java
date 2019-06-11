@@ -2,7 +2,6 @@ package ru.ras.nbsurgu.telegram.database.service;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import org.jetbrains.annotations.NotNull;
 import ru.ras.nbsurgu.telegram.database.dao.GenericDAOImpl;
 import ru.ras.nbsurgu.telegram.database.entity.CodeEntity;
 
@@ -30,12 +29,6 @@ public class CodeService {
         }
 
         return instance;
-    }
-
-    public void create(final CodeEntity entity) {
-        codeDao.openCurrentSessionWithTransaction();
-        codeDao.create(entity);
-        codeDao.closeCurrentSessionWithTransaction();
     }
 
     public void update(final CodeEntity entity) {
@@ -68,7 +61,6 @@ public class CodeService {
         codeDao.closeCurrentSessionWithTransaction();
     }
 
-    @NotNull
     public Optional<CodeEntity> read(final long tgId) {
         final Session session = codeDao.openCurrentSessionWithTransaction();
         final CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();

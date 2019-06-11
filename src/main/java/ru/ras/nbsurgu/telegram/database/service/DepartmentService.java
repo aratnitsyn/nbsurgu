@@ -26,30 +26,6 @@ public class DepartmentService {
         return instance;
     }
 
-    public void persist(DepartmentEntity entity) {
-        departmentDao.openCurrentSessionWithTransaction();
-        departmentDao.persist(entity);
-        departmentDao.closeCurrentSessionWithTransaction();
-    }
-
-    public void create(DepartmentEntity entity) {
-        departmentDao.openCurrentSessionWithTransaction();
-        departmentDao.create(entity);
-        departmentDao.closeCurrentSessionWithTransaction();
-    }
-
-    public void create(List<DepartmentEntity> entities) {
-        departmentDao.openCurrentSessionWithTransaction();
-        entities.forEach(entity -> departmentDao.create(entity));
-        departmentDao.closeCurrentSessionWithTransaction();
-    }
-
-    public void update(DepartmentEntity entity) {
-        departmentDao.openCurrentSessionWithTransaction();
-        departmentDao.update(entity);
-        departmentDao.closeCurrentSessionWithTransaction();
-    }
-
     public DepartmentEntity read(long departmentId) {
         departmentDao.openCurrentSessionWithTransaction();
         final DepartmentEntity departmentEntity = departmentDao.read(departmentId);

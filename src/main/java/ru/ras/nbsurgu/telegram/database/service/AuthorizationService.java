@@ -5,15 +5,11 @@ import org.hibernate.query.Query;
 import org.jetbrains.annotations.NotNull;
 import ru.ras.nbsurgu.telegram.database.dao.GenericDAOImpl;
 import ru.ras.nbsurgu.telegram.database.entity.AuthorizationEntity;
-import ru.ras.nbsurgu.telegram.database.entity.TakenBookEntity;
-import ru.ras.nbsurgu.telegram.database.entity.UserEntity;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public class AuthorizationService {
 
@@ -38,12 +34,6 @@ public class AuthorizationService {
     public void create(final AuthorizationEntity entity) {
         authorizationDao.openCurrentSessionWithTransaction();
         authorizationDao.create(entity);
-        authorizationDao.closeCurrentSessionWithTransaction();
-    }
-
-    public void update(final AuthorizationEntity entity) {
-        authorizationDao.openCurrentSessionWithTransaction();
-        authorizationDao.update(entity);
         authorizationDao.closeCurrentSessionWithTransaction();
     }
 
