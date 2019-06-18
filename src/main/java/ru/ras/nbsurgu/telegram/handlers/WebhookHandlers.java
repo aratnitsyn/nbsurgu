@@ -78,7 +78,9 @@ public class WebhookHandlers extends Handlers {
             }
         }
 
-        return sendingMessage == null ? getSendMessageUnknownCommand(update.getMessage().getChatId()) : sendingMessage;
+        return sendingMessage == null ?
+                getSendMessageUnknownCommand(update.getMessage().getChatId()) :
+                sendingMessage;
     }
 
     private @Nullable BotApiMethod getSendingMessage(final AbsSender absSender, final Update update, final CallbackQuery callbackQuery) {

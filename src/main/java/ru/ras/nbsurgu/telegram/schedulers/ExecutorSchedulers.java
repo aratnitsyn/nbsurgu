@@ -29,11 +29,11 @@ public class ExecutorSchedulers {
     }
 
     public void init() {
-        for (ISchedulers schedulers : schedulers) {
+        for (ISchedulers scheduler : schedulers) {
             Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(
-                    schedulers,
-                    schedulers.getInitTime(),
-                    schedulers.getDelayTime(),
+                    scheduler,
+                    scheduler.getInitTime(),
+                    scheduler.getDelayTime(),
                     TimeUnit.MILLISECONDS
             );
         }
