@@ -20,10 +20,7 @@ import ru.ras.nbsurgu.telegram.database.service.UserService;
 import ru.ras.nbsurgu.telegram.keyboard.ReplyKeyboardMarkupBuilder;
 import ru.ras.nbsurgu.telegram.utils.*;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class ForgetPasswordCommand implements ICommand {
 
@@ -307,7 +304,7 @@ public class ForgetPasswordCommand implements ICommand {
 
             CodeEntity codeEntity;
 
-            final int code = CodeGeneratorUtils.get();
+            final int code = new Random().nextInt(4000) + 1000;
 
             if (optionalCodeEntity.isPresent()) {
                 codeEntity = optionalCodeEntity.get();
